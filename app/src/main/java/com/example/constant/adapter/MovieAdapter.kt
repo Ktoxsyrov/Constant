@@ -1,6 +1,7 @@
 package com.example.constant.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,18 +12,10 @@ import com.example.constant.R
 import com.example.constant.model.Movie
 import com.example.constant.model.MoviesList
 
-class MovieAdapter(private val context: Context,
+class MovieAdapter(private val movies: List<Movie>,
+                   private val context: Context,
                    val listener: (Movie) -> Unit
                    ): RecyclerView.Adapter<MovieAdapter.MyViewHolder>() {
-
-
-    private var movies: List<Movie> = listOf()
-
-    fun setMovies(movieList: MoviesList){
-        val sortedlist: MutableList<Movie> = movieList.items.toMutableList()
-        sortedlist.sortBy { it.releaseYear }
-        this.movies = sortedlist
-    }
 
     class MyViewHolder(view: View): RecyclerView.ViewHolder(view){
         val title: TextView = view.findViewById(R.id.title)

@@ -3,15 +3,22 @@ package com.example.constant.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.constant.model.Movie
 import com.example.constant.model.MoviesList
 import com.example.constant.repository.Repository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainViewModel: ViewModel() {
 
-    private var moviesList = MutableLiveData<MoviesList>()
+    var moviesList = MutableLiveData<MoviesList>()
 
-    fun getMovies(): LiveData<MoviesList>{
-        moviesList = Repository.makeApiCall()
-        return moviesList
+    fun getMovies(){
+        viewModelScope.launch(Dispatchers.IO) {
+            moviesList.postValue(Repository.makeApiCall())
+        }
     }
+
+
 }

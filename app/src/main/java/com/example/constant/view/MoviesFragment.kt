@@ -2,6 +2,7 @@ package com.example.constant.view
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,17 +27,19 @@ class MoviesFragment : Fragment() {
         recyclerView = view.findViewById(R.id.moviesRecycler)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
 
-        val recyclerAdapter = MovieAdapter(view.context){movie ->
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setMessage("Фильм '${movie.title}' был нажат")
-            builder.show()
+        val mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
+        mainViewModel.moviesList.observe(viewLifecycleOwner) {
+            val recyclerAdapter = MovieAdapter(it.items,view.context){movie ->
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setMessage("Фильм '${movie.title}' был нажат")
+                builder.show()
+            }
+            recyclerView.adapter = recyclerAdapter
+            Log.d("help", it.toString())
         }
 
-        val mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        mainViewModel.getMovies().observe(viewLifecycleOwner, Observer {
-            recyclerAdapter.setMovies(it)
-            recyclerView.adapter = recyclerAdapter
-        })
+        mainViewModel.getMovies()
 
         return view
     }
