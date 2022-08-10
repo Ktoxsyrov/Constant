@@ -8,7 +8,12 @@ object Repository {
 
     suspend fun makeApiCall(): MoviesList{
         val retrofitService = RetrofitService.create().getMovieList()
-        return retrofitService.await()
+        try {
+            return retrofitService.await()
+        } catch (e: RuntimeException){
+            return MoviesList(listOf())
+        }
+
     }
 
 
