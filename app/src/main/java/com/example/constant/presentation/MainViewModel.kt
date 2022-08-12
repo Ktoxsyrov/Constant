@@ -1,10 +1,8 @@
-package com.example.constant.viewModel
+package com.example.constant.presentation
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.constant.model.Movie
 import com.example.constant.model.MoviesList
 import com.example.constant.repository.Repository
 import kotlinx.coroutines.Dispatchers

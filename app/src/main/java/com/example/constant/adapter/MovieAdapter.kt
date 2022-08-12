@@ -12,11 +12,12 @@ import com.example.constant.R
 import com.example.constant.model.Movie
 import com.example.constant.model.MoviesList
 
-class MovieAdapter(private val movies: List<Movie>,
+class MovieAdapter(movies: List<Movie>,
                    private val context: Context,
                    val listener: (Movie) -> Unit
                    ): RecyclerView.Adapter<MovieAdapter.MyViewHolder>() {
 
+    private val movies = movies.sortedBy { it.releaseYear }
     class MyViewHolder(view: View): RecyclerView.ViewHolder(view){
         val title: TextView = view.findViewById(R.id.title)
         val directorName: TextView = view.findViewById(R.id.directorName)

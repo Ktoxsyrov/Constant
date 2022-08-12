@@ -8,7 +8,7 @@ import retrofit2.http.GET
 
 interface RetrofitService {
         @GET("films.json")
-        fun getMovieList(): Call<MoviesList>
+        suspend fun getMovieList(): MoviesList
 
         companion object{
                 val BASE_URL = "https://raw.githubusercontent.com/constanta-android-dev/intership-wellcome-task/main/"

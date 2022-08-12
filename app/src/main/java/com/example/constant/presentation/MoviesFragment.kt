@@ -1,4 +1,4 @@
-package com.example.constant.view
+package com.example.constant.presentation
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -7,13 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.constant.viewModel.MainViewModel
-import com.example.constant.adapter.MovieAdapter
 import com.example.constant.R
+import com.example.constant.adapter.MovieAdapter
 
 class MoviesFragment : Fragment() {
 

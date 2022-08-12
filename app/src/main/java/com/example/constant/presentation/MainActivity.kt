@@ -1,4 +1,4 @@
-package com.example.constant.view
+package com.example.constant.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
